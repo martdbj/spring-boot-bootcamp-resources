@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ltp.gradesubmission.Constants;
 import com.ltp.gradesubmission.Grade;
-import com.ltp.gradesubmission.Repository.GradeRepository;
 import com.ltp.gradesubmission.Service.GradeService;
 
 @Controller
@@ -24,8 +23,7 @@ public class GradeController {
 
     @GetMapping("/")
     public String getForm(Model model, @RequestParam(required = false) String id) {
-        int index = getGradeIndex(id);
-        model.addAttribute("grade", index == Constants.NOT_FOUND ? new Grade() : gradeService.getGrade(index));
+        model.addAttribute("grade", gradeService.getGradeByID(id));
         return "form";
     }
 
@@ -34,7 +32,7 @@ public class GradeController {
         if (result.hasErrors())
             return "form";
 
-        int index = getGradeIndex(grade.getId());
+        int index = gradeService.getGradeIndex(grade.getId());
         if (index == Constants.NOT_FOUND) {
             gradeService.addGrade(grade);
         } else {
@@ -48,13 +46,4 @@ public class GradeController {
         model.addAttribute("grades", gradeService.getGrades());
         return "grades";
     }
-
-    public int getGradeIndex(String id) {
-        for (int i = 0; i < gradeService.getGrades().size(); i++) {
-            if (gradeService.getGrade(i).getId().equals(id))
-                return i;
-        }
-        return Constants.NOT_FOUND;
-    }
-
 }

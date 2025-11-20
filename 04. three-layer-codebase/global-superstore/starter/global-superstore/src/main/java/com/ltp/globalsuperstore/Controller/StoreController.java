@@ -1,5 +1,4 @@
-package com.ltp.globalsuperstore;
-
+package com.ltp.globalsuperstore.Controller;
 
 import javax.validation.Valid;
 
@@ -11,26 +10,27 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.ltp.globalsuperstore.Item;
+import com.ltp.globalsuperstore.Service.StoreService;
+
 @Controller
 public class StoreController {
 
-    StoreService storeService;
-
-    public StoreController(StoreService storeService) {
-        this.storeService = storeService;
-    }
+    StoreService storeService = new StoreService();
 
     @GetMapping("/")
     public String getForm(Model model, @RequestParam(required = false) String id) {
-        model.addAttribute("item", storeService.getItemfromId(id));
+        model.addAttribute("item", storeService.getItemById(id));
         return "form";
     }
 
     @PostMapping("/submitItem")
     public String handleSubmit(@Valid Item item, BindingResult result, RedirectAttributes redirectAttributes) {
-        if (item.getPrice() < item.getDiscount()) result.rejectValue("price", "", "Price cannot be less than discount");
+        result = storeService.handlePriceValidation(item, result);
         if (result.hasErrors()) return "form";
+        
         String status = storeService.handleSubmit(item);
+
         redirectAttributes.addFlashAttribute("status", status);
         return "redirect:/inventory";
     }
@@ -40,5 +40,4 @@ public class StoreController {
         model.addAttribute("items", storeService.getItems());
         return "inventory";
     }
-
 }

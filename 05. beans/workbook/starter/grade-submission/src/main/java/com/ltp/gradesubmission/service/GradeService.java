@@ -7,9 +7,8 @@ import com.ltp.gradesubmission.pojo.Grade;
 import com.ltp.gradesubmission.repository.GradeRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-@Service
+
 public class GradeService {
 
     @Autowired
@@ -24,7 +23,7 @@ public class GradeService {
     }
 
     public void updateGrade(Grade grade, int index) {
-        gradeRepository.updateGrade(grade, index);;
+        gradeRepository.updateGrade(grade, index);
     }
     
     public List<Grade> getGrades() {
