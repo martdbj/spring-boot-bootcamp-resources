@@ -1,6 +1,8 @@
 package com.ltp.gradesubmission;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
@@ -52,5 +54,35 @@ public class GradeServiceTest {
 
         assertEquals(0, valid);
         assertEquals(Constants.NOT_FOUND, notFound);
+    }
+
+    @Test
+    public void getGradeByIdTest() {
+        Grade grade = new Grade("Harry", "Potions", "C-");
+        when(gradeRepository.getGrades()).thenReturn(Arrays.asList(grade));
+        when(gradeRepository.getGrade(0)).thenReturn(grade);
+
+        String id = grade.getId();  
+        Grade result = gradeService.getGradeById(id);
+
+        assertEquals(id, result.getId());
+    }
+
+    @Test
+    public void addGradeTest() {
+        Grade newGrade = new Grade("Hermione", "Arimthmancy", "A+");
+        gradeService.submitGrade(newGrade);
+        verify(gradeRepository, times(1)).addGrade(newGrade);
+    }
+
+    @Test
+    public void updateGradeTest() {
+        Grade grade = new Grade("Harry", "Potions", "C-");
+        when(gradeRepository.getGrades()).thenReturn(Arrays.asList(grade));
+        when(gradeRepository.getGrade(0)).thenReturn(grade);
+
+        grade.setScore("A-");
+        gradeService.submitGrade(grade);
+        verify(gradeRepository, times(1)).updateGrade(grade, 0);
     }
 }
