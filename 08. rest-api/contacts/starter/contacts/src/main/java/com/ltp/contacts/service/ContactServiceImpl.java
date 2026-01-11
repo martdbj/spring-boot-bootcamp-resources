@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ltp.contacts.exception.ContactNotFoundException;
-import com.ltp.contacts.exception.NoContactException;
 import com.ltp.contacts.pojo.Contact;
 import com.ltp.contacts.repository.ContactRepository;
 
@@ -17,7 +16,7 @@ public class ContactServiceImpl implements ContactService {
     @Autowired
     private ContactRepository contactRepository;
 
-    private int findIndexById(String id) throws NoContactException {
+    private int findIndexById(String id) {
         return IntStream.range(0, contactRepository.getContacts().size())
             .filter(index -> contactRepository.getContacts().get(index).getId().equals(id))
             .findFirst()
@@ -25,7 +24,7 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public Contact getContactById(String id) throws NoContactException {
+    public Contact getContactById(String id) {
         return contactRepository.getContact(findIndexById(id));
     }
 
@@ -35,12 +34,12 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public void updateContact(String id, Contact contact) throws NoContactException {
+    public void updateContact(String id, Contact contact) {
         contactRepository.updateContact(findIndexById(id), contact);
     }
 
     @Override
-    public void deleteContact(String id) throws NoContactException{
+    public void deleteContact(String id) {
         contactRepository.deleteContact(findIndexById(id));
     }
 
