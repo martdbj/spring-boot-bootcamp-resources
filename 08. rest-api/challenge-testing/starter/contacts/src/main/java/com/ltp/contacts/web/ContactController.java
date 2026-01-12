@@ -19,14 +19,17 @@ import com.ltp.contacts.pojo.Contact;
 import com.ltp.contacts.service.ContactService;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.*;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+
 @Tag(name = "Contact Controller", description = "Create and retrieve contacts")
 @RestController
 public class ContactController {
-    
+
     @Autowired
     private ContactService contactService;
 
@@ -40,8 +43,8 @@ public class ContactController {
 
     @Operation(summary = "Get contact by Id", description = "Returns a contact based on an ID")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "404", description = "Contact doesn't exist", content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-        @ApiResponse(responseCode = "200", description = "Successful retrieval of contact", content = @Content(schema = @Schema(implementation = Contact.class))),
+            @ApiResponse(responseCode = "404", description = "Contact doesn't exist", content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
+            @ApiResponse(responseCode = "200", description = "Successful retrieval of contact", content = @Content(schema = @Schema(implementation = Contact.class))),
     })
     @GetMapping(value = "/contact/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Contact> getContact(@PathVariable String id) {
@@ -51,9 +54,9 @@ public class ContactController {
 
     @Operation(summary = "Create Contact", description = "Creates a contact from the provided payload")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "201", description = "Successful creation of contact"),
-        @ApiResponse(responseCode = "400", description = "Bad request: unsuccessful update", content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
-     })
+            @ApiResponse(responseCode = "201", description = "Successful creation of contact"),
+            @ApiResponse(responseCode = "400", description = "Bad request: unsuccessful update", content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
+    })
     @PostMapping(value = "/contact", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Contact> createContact(@Valid @RequestBody Contact contact) {
         contactService.saveContact(contact);
