@@ -36,7 +36,7 @@ spring.datasource.url=jdbc:h2:mem:project-name
    ```
    @Entity
    @Table(name = example)
-   public class Example {
+   public class Example {}
    ```
 2. Map a field to a column with @Column
    ```
@@ -61,11 +61,12 @@ public class Student {
 
     @Column(name = "birth_date", nullable = false)
     private LocalDate birthDate;
+}
 ```
 #### Saving data to a table
 1. JPA provides a **CrudRepository** with an interface
    ```
-   public interface NameRepository extends           CrudRepository<Entity, Long> {}
+   public interface NameRepository extends CrudRepository<Entity, Long> {}
    ```
    ```
    public class NameService implements StudentService {}
