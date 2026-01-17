@@ -68,6 +68,8 @@ public class Student {
    ```
    public class NameService implements StudentService {}
    ```
+   You have to implement this interface in your ServiceImplementation class
 3. Make a **post request** with **json**
 4. **Save** the entity from the CrudRepository
 
+#### Retrieving data from a table
