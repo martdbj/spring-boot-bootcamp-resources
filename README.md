@@ -5,6 +5,19 @@
 #### H2
   - It provides an in-memory relational database.
 
+#### Lombok
+  **Important:** In VSCODE install lombok annotation extension
+  - Minimizes boilerplate code
+    
+_Example (This generates automatically getters/setters/constructors):_
+```
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class Student {}
+```
+
 ### Dependencies
 ```
 <dependency>
