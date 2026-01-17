@@ -68,7 +68,7 @@ public class Student {
    ```
    public interface NameRepository extends CrudRepository<Entity, Long> {}
    ```
-You have to implement this interface in your ServiceImplementation class
+   You have to implement this interface in your ServiceImplementation class
    ```
    public class NameService implements StudentService {}
    ```
