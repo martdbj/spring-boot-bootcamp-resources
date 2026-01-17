@@ -43,6 +43,7 @@ spring.datasource.url=jdbc:h2:mem:project-name
    private String example;
    ```
 3. If the column is an id use @Id and @GeneratedValue
+
 _Example:_
 ```
 @Entity
