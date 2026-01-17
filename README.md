@@ -88,4 +88,5 @@ JPA provides a **CrudRepository** with an interface
        NameRepository nameRepository
    }
    ```
+#### Unidirectional Relationships
 
