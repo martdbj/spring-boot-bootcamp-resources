@@ -72,7 +72,5 @@ public class Student {
    ```
    public class NameService implements StudentService {}
    ```
-3. Make a **post request** with **json**
-4. **Save** the entity from the CrudRepository
 
 #### Retrieving data from a table
