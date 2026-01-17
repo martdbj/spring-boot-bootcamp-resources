@@ -1,7 +1,7 @@
 # Spring-Boot Cheat sheet
 
 ## Spring Boot JPA
-### Prototypes
+### Tools
 #### H2
   - It provides an in-memory relational database.
 
