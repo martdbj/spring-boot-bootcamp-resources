@@ -63,14 +63,16 @@ public class Student {
     private LocalDate birthDate;
 }
 ```
-#### Saving data to a table
-1. JPA provides a **CrudRepository** with an interface
+#### Creating JPA CrudRepository
+JPA provides a **CrudRepository** with an interface
    ```
    public interface NameRepository extends CrudRepository<Entity, Long> {}
    ```
-   You have to implement this interface in your ServiceImplementation class
+  You have to implement this interface in your ServiceImplementation class 
    ```
-   public class NameService implements StudentService {}
+   public class NameServiceImpl implements NameService {
+       @Autowired
+       NameRepository nameRepository
+   }
    ```
 
-#### Retrieving data from a table
