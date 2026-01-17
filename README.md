@@ -29,8 +29,7 @@ spring.datasource.url=jdbc:h2:mem:project-name
 ```
 
 ### How to use it
-#### Object relational mapper
-##### How to create a table?
+#### Creating a table
 1. Set up a **table-name** entity
    ```
    @Entity
@@ -61,5 +60,14 @@ public class Student {
     @Column(name = "birth_date", nullable = false)
     private LocalDate birthDate;
 ```
-
+#### Saving data to a table
+1. JPA provides a **CrudRepository** with an interface
+   ```
+   public interface NameRepository extends           CrudRepository<Entity, Long> {}
+   ```
+   ```
+   public class NameService implements StudentService {}
+   ```
+3. Make a **post request** with **json**
+4. **Save** the entity from the CrudRepository
 
