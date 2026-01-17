@@ -20,7 +20,9 @@
 
 ### Properties
 Visualize content of our database
+
 Access the console with the path
+
 Conection name
 ```
 spring.h2.console.enabled=true
