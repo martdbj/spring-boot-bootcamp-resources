@@ -68,10 +68,10 @@ public class Student {
    ```
    public interface NameRepository extends CrudRepository<Entity, Long> {}
    ```
+You have to implement this interface in your ServiceImplementation class
    ```
    public class NameService implements StudentService {}
    ```
-   You have to implement this interface in your ServiceImplementation class
 3. Make a **post request** with **json**
 4. **Save** the entity from the CrudRepository
 
