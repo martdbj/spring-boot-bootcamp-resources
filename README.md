@@ -88,5 +88,22 @@ JPA provides a **CrudRepository** with an interface
        NameRepository nameRepository
    }
    ```
-#### Unidirectional Relationships
+#### Custom queries
+Naming convention:
+```
+Name (Action)findBy(Field value)column_name(Long id);
+```
+#### Unidirectional Relationships: Many to One
+1. **Many** table are associated with **One** table
+2. The child manages the foreign key
+```
+@ManyToOne(optional = false)
+@JoinColumn(name = "column_name", refferencedColumnName = "foreign_key")
+    private Name name;
+```
+#### Bidirectional: One to Many
+Provides navigational access from both sides
+mappedBy goes on the non-owning side of the relationship
+```
+
 
