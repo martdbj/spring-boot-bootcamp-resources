@@ -93,7 +93,7 @@ JPA provides a **CrudRepository** with an interface
        NameRepository nameRepository
    }
    ```
-#### Custom queries
+#### Custom queries for Crud Repository
 Naming convention:
 ```
 Name (Action)findBy(Field value)column_name(Long id);
