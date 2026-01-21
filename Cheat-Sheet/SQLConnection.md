@@ -104,7 +104,28 @@ Name (Action)findBy(Field value)column_name(Long id);
 @JoinColumn(name = "column_name", refferencedColumnName = "foreign_key")
     private Name name;
 ```
-#### Bidirectional: One to Many
+#### Bidirectional: One to Many (Preferred over unidirectional)
 Provides navigational access from both sides
 mappedBy goes on the non-owning side of the relationship
+We use JsonIgnore for avoiding creating an infinite loop when doing a request
 ```
+@JsonIgnore
+@OneToMany(mappedBy = "property_match", cascade = CascadeType.ALL)
+```
+It's recommended to put the foreign key in the table that can't live without the other
+We want to have only the nonNull fields with:
+```
+@RequiredArgsConstructor 
+@Entity
+
+@NonNull
+@Column
+```
+#### Autowired vs AllArgsConstructor
+It takes care of dependency injection by itself, you don't need to use autowired or write the constructor by hand again
+```
+@AllArgsConstructor
+@Service
+```
+
+
