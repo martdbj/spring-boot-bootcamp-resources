@@ -35,11 +35,11 @@ public class Student {}
 ```
 
 ### Properties
-Visualize content of our database
+Visualizes the content of our database
 
 Access the console with the path
 
-Conection name
+Connection name
 ```
 spring.h2.console.enabled=true
 spring.h2.console.path=/h2
@@ -101,7 +101,7 @@ Name (Action)findBy(Field value)column_name(Long id);
 2. The child manages the foreign key
 ```
 @ManyToOne(optional = false)
-@JoinColumn(name = "column_name", refferencedColumnName = "foreign_key")
+@JoinColumn(name = "column_name", referencedColumnName = "foreign_key")
     private Name name;
 ```
 #### Bidirectional: One to Many (Preferred over unidirectional)
