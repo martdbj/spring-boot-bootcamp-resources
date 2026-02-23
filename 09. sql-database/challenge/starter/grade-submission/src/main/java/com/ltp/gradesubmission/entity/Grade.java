@@ -16,7 +16,6 @@ import lombok.*;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "grade", uniqueConstraints={
@@ -39,6 +38,5 @@ public class Grade {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "course_id", referencedColumnName = "id")
-    private Course course;
-    
+    private Course course;    
 }

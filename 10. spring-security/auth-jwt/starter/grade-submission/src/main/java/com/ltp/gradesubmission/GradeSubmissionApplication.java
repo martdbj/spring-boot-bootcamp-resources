@@ -15,7 +15,8 @@ import com.ltp.gradesubmission.repository.StudentRepository;
 
 import lombok.AllArgsConstructor;
 
-@SpringBootApplication @AllArgsConstructor
+@SpringBootApplication
+@AllArgsConstructor
 public class GradeSubmissionApplication implements CommandLineRunner {
 
 	StudentRepository studentRepository;
